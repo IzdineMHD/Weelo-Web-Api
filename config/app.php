@@ -166,11 +166,11 @@ return [
          * Package Service Providers...
          */
 
-        Barryvdh\Debugbar\ServiceProvider::class,
-        Laravolt\Avatar\ServiceProvider::class,
+        //Barryvdh\Debugbar\ServiceProvider::class,
+        //Laravolt\Avatar\ServiceProvider::class,
+        //Intervention\Image\ImageServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
         MercurySeries\Flashy\FlashyServiceProvider::class,
-        //Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -233,12 +233,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Debugbar' => Barryvdh\Debugbar\Facade::class,
-        'Avatar' => Laravolt\Avatar\Facade::class,
         'Passport' => Laravel\Passport\Passport::class,
         'Flashy' => MercurySeries\Flashy\Flashy::class,
-        'Image' => Intervention\Image\Facades\Image::class,
-
     ],
 
 ];

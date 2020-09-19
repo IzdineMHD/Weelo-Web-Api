@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-
-use Image;
 use App\Models\User;
 use App\Models\Post;
 use App\Notifications\UserActivation;
@@ -129,11 +127,32 @@ class RegisterController extends Controller
 
         return $user;
     }
-
-
+    
+    
+    /**
+     * Get curent connected user
+     *
+     */
     public function user(Request $request)
     {
         return response()->json($request->user());
+    }
+
+
+    /**
+     * Get all users and theirs activation_token
+     *
+     */
+    public function users() 
+    {
+        $all_users = User::count();
+        $users = User::all();
+
+        return response()->json([
+            'Message' => 'All registered users informations.',
+            //'all_users' => $all_users,
+            'users' => $users
+        ]);
     }
 
 
@@ -162,7 +181,7 @@ class RegisterController extends Controller
             'stored_image' => $stored_image
         ]);
     }
-    */
+     */
 
 
     /*

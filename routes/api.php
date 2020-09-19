@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get('users', 'Api\Auth\RegisterController@users');
 Route::post('insert', 'Api\Auth\RegisterController@insert');
 Route::post('register', 'Api\Auth\RegisterController@register');
 Route::post('store_image', 'Api\Auth\RegisterController@store_image');

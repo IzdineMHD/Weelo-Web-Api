@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Support\Str;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
@@ -10,15 +11,16 @@ use Illuminate\Notifications\Notification;
 class UserActivation extends Notification
 {
     use Queueable;
+    private $activation_code;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($activation_code)
     {
-        //
+        $this->activation_code = Str::random(6);
     }
 
     /**
@@ -43,8 +45,10 @@ class UserActivation extends Notification
         $url = url('/api/activation/'.$notifiable->activation_token);
 
         return (new MailMessage)
-                    ->subject('Confirmation de compte')
+                    ->subject('Activation de compte')
                     ->line('Félicitation pour votre inscription mais vous devez activer votre compte pour continuer.')
+                    ->line('Votre code d\'activation : ' . $this->activation_code)
+                    ->line('Il expirera dans 60 min! Vous n\'avez plus qu\'à cliquer sur ce lien.')
                     ->action('Notification Action', url($url))
                     ->line('Merci encore de nous choisir et pour votre compréhension!');
     }
