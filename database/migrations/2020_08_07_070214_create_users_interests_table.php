@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateUsersInterestsTable extends Migration
 {
@@ -20,14 +21,11 @@ class CreateUsersInterestsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id'); 
             $table->string('username');           
-            $table->unsignedBigInteger('interest_id');
-            $table->string('interest_type');
             $table->string('interest_name');
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('interest_id')->references('id')->on('centers_of_interests')->onUpdate('cascade')->onDelete('cascade');
 
         });
     }
