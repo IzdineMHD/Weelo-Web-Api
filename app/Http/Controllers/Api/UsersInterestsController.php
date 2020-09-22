@@ -22,7 +22,7 @@ class UsersInterestsController extends Controller
 
         $user = User::where('id', $request->user_id)->first();
 
-        $userInterest = UsersInterests::create([
+        $user_created_interest = UsersInterests::create([
             'user_id' => request('user_id'),
             'username' => $user->username,
             'interest_name' => request('interest_name')
@@ -34,13 +34,8 @@ class UsersInterestsController extends Controller
             'user_id' => request('user_id')
         ]);
 
-        $user_created_interest = UsersInterests::where('id', $request->user_id)
-                                                ->select('id as created_interest_id', 'username as created_interest_user', 
-                                                'interest_name as created_interest_name')->get();
-
-
         return response()->json([
-            'Message' => 'Informations liées aux centres d\'intèrêts créée par l\'utilisateur.',
+            'Message' => 'Centre d\'interêt créé et attribué avec succès!.',
             'user_created_interest' => $user_created_interest
         ]);
 
@@ -59,7 +54,7 @@ class UsersInterestsController extends Controller
 
         return response()->json([
             'Message' => 'Informations liées aux centres d\'intèrêts de l\'utilisateur connecté.',
-            'total_user_interests' => $total_user_interests,
+            // 'total_user_interests' => $total_user_interests,
             'all_user_interests' => $all_user_interests
         ]);
     }
@@ -74,8 +69,8 @@ class UsersInterestsController extends Controller
                                   ->orderBy('interest_name')->get();
 
         return response()->json([
-            'Message' => 'Informations liées aux centres d\'intèrêts de l\'utilisateur connecté.',
-            'total_interests' => $total_interests,
+            'Message' => 'Informations liées à tous les centres d\'intèrêts.',
+            // 'total_interests' => $total_interests,
             'all_interests' => $all_interests
         ]);
     }
